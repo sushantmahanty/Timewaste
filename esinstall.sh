@@ -35,7 +35,6 @@ cd /home/mgt/tmp_es/
 wget_result="$(wget -NS https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$es-arm64.deb 2>&1|grep "HTTP/"|awk '{print $2}')"
 
 if [ $wget_result = 200 ]; then
-echo "Package Available"
 remove_es
 install_es
 else
