@@ -1,0 +1,65 @@
+#!/bin/sh
+
+code_deploy() {
+echo "You have chosen Code Deploy Structure Please enter the website root name from /home/cloudpanel/htdocs/";
+read -p "Enter Website Name from htdocs which needs to configured for code deploy: " path
+if [ -z "$path" ]
+    then
+      echo "You have Entered Null Path $path"
+else
+    mv /home/cloudpanel/htdocs/$path /home/cloudpanel/htdocs/release1
+    mkdir -p /home/cloudpanel/htdocs/$path/releases/
+    mv /home/cloudpanel/htdocs/release1 /home/cloudpanel/htdocs/$path/releases/
+    ln -s releases/release1 /home/cloudpanel/htdocs/$path/current
+    mkdir -p /home/cloudpanel/htdocs/$path/shared/{pub/media,pub/static/_cache,var/log,var/report}
+
+    #Move
+    mv /home/cloudpanel/htdocs/$path/releases/release1/pub/media/* /home/cloudpanel/htdocs/$path/shared/pub/media/
+    mv /home/cloudpanel/htdocs/$path/releases/release1/pub/static/_cache/* /home/cloudpanel/htdocs/$path/shared/pub/static/_cache/
+    mv /home/cloudpanel/htdocs/$path/releases/release1/var/log/* /home/cloudpanel/htdocs/$path/shared/var/log/
+
+    #Remove
+    rm -r /home/cloudpanel/htdocs/$path/releases/release1/pub/media
+    rm -r /home/cloudpanel/htdocs/$path/releases/release1/pub/static/_cache
+    rm -r /home/cloudpanel/htdocs/$path/releases/release1/var/log
+    rm -r /home/cloudpanel/htdocs/$path/releases/release1/var/report
+
+    #Symmlinks
+    ln -s ../../../shared/pub/media /home/cloudpanel/htdocs/$path/releases/release1/pub/media
+    ln -s ../../../../shared/pub/static/_cache /home/cloudpanel/htdocs/$path/releases/release1/pub/static/_cache
+    ln -s ../../../shared/var/log /home/cloudpanel/htdocs/$path/releases/release1/var/log
+    ln -s ../../../shared/var/report /home/cloudpanel/htdocs/$path/releases/release1/var/report
+    echo "Code Deploy Structure has been made for ==> /home/cloudpanel/htdocs/$path"
+fi
+}
+
+stop_services() {
+echo "You have chosen Services Stop Please mention the php version which need to start for example==>  7.4"
+read -p "Enter PHP FPM Version that needs to be enabled: " php
+if [ -z "$php" ]
+    then
+      echo "You have Entered Null PHP Version $php"
+else
+systemctl stop mysql varnish elasticsearch redis-server php7.{1..4}-fpm php8.{0..1}-fpm
+systemctl disable mysql varnish elasticsearch redis-server php7.{1..4}-fpm php8.{0..1}-fpm
+systemctl enable php"$php"-fpm
+systemctl start php"$php"-fpm
+echo "All Services Stopped & Disabled. PHP"$php" Started"
+fi
+}
+
+while true; do
+    options=("Code_Deploy" "Services_Stop" "Quit")
+
+    echo "Choose an option: "
+    select opt in "${options[@]}"; do
+        case $REPLY in
+            1) code_deploy; break ;;
+            2) stop_services; break ;;
+            3) break 2 ;;
+            *) echo "What's that?" >&2
+        esac
+    done
+done
+
+echo "Bye bye Sushant!"
