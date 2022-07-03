@@ -14,7 +14,7 @@ chmod +x esinstall.sh
 
 ./esinstall.sh
 
-Redis Install(Upcoming Plan):
+Redis Install Pending (Plan):
 
 Reference Packages: http://download.redis.io/releases/
 
@@ -34,4 +34,4 @@ make
 
 3.then on actual server wget the binaries on usr/bin or /usr/local/bin
 
-Varnish Pending:
+Varnish Install Pending:
