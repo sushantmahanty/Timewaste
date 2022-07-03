@@ -45,6 +45,11 @@ echo "You can find the versions here visit https://www.elastic.co/downloads/past
 fi
 }
 
+es_ver () {
+read -p "Enter the ElasticSearch Version: " es
+check_es $es
+}
+
 check_arch() {
 arch=$(arch)
 if [[ $arch == aarch64 ]]; then
@@ -54,11 +59,6 @@ elif [[ $arch == arm* ]]; then
 else
     echo "Not for x86 architecture bro maybe you should try learning how to install things ?"
 fi
-}
-
-es_ver () {
-read -p "Enter the ElasticSearch Version: " es
-check_es $es
 }
 
 check_arch
