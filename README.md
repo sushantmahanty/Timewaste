@@ -32,5 +32,5 @@ make
 
 2.then zip the binaries and upload it using transfer.sh
 
-3. then on actual server wget the binaries on usr/bin or /usr/local/bin
+3.then on actual server wget the binaries on usr/bin or /usr/local/bin
 
