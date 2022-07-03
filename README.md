@@ -35,3 +35,5 @@ make
 3.then on actual server wget the binaries on usr/bin or /usr/local/bin
 
 Varnish Install Pending:
+
+Reference : https://varnish-cache.org/releases/
