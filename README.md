@@ -34,3 +34,4 @@ make
 
 3.then on actual server wget the binaries on usr/bin or /usr/local/bin
 
+Varnish Pending:
