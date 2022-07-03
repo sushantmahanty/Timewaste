@@ -41,7 +41,6 @@ else
 rm -rf /home/mgt/tmp_es/
 echo "Unfortunately that package version is not available"
 echo "You can find the versions here visit https://www.elastic.co/downloads/past-releases/#elasticsearch"
-    exit 1
 fi
 }
 
