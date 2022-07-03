@@ -57,7 +57,7 @@ if [[ $arch == aarch64 ]]; then
 elif [[ $arch == arm* ]]; then
     es_ver
 else
-    echo "What are you doing bro ? This script is only meant for ARM Architecutre"
+    echo "What are you doing bro? This script is only meant for ARM Architecture"
 fi
 }
 
