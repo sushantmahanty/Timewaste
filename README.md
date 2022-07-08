@@ -15,7 +15,9 @@ wget https://raw.githubusercontent.com/sushantmahanty/Timewaste/main/helper
 bash helper
 
 PhantomJS(ARM Only):
+
 wget https://raw.githubusercontent.com/sushantmahanty/Timewaste/main/phantomjs -O /usr/bin/phantomjs
+
 chmod +x /usr/bin/phantomjs
 
 Redis Install Pending (Plan):
