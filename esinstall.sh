@@ -24,7 +24,7 @@ echo '-Xmx2g' >> /etc/elasticsearch/jvm.options
 systemctl restart elasticsearch
 rm -rf /home/mgt/tmp_es/
 curl -X GET 'http://127.0.0.1:9200'
-echo -e "Elasticsearch $es Installed\nInsert Following line in ES [Service] section so it can take care when ES Crashes \nnano /lib/systemd/system/elasticsearch.service \nRestart=always\nRestartSec=3\nnsystemctl daemon-reload\nsystemctl restart elasticsearch"
+echo -e "Elasticsearch $es Installed\nInsert Following line in ES [Service] section so it can take care when ES Crashes \nnano /lib/systemd/system/elasticsearch.service \nRestart=always\nRestartSec=3\nsystemctl daemon-reload\nsystemctl restart elasticsearch"
 }
 
 check_es () {
